@@ -10,6 +10,11 @@
         success: function(data) {
             console.log('success');
             console.log(data);
+            if(data.status=="success"){
+                location.href = data.url;
+            }else{
+                alert("Login Failed");
+            }
         },
         error: function(){
             console.log('error');
