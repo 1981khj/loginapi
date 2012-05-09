@@ -14,6 +14,7 @@ app.configure(function() {
   app.use(express.favicon());
   app.use(express.bodyParser());
   app.use(express.cookieParser());
+  app.use(express.session({ secret: 'messengerweb' }));
   app.use(express.methodOverride());
   //스타일 정의
   //app.use(require('stylus').middleware({ src: __dirname + '/public' }));
@@ -40,7 +41,7 @@ app.get('/messenger', function(req, res) {
     res.sendfile(__dirname + '/views/success.html');    
 });
 
-app.get('/logout', function(req, res) {
+app.get('/logout', function(req, res) {    
     req.session.user = undefined;
     res.redirect('/');
 });
@@ -57,8 +58,8 @@ app.post('/login', function(req, res) {
         if (err) throw err;
         
         if(items.length){
+            res.send({'status':'success', "url":"/messenger/?ticket="+ sTickerId});
             req.session.user = sUserName;
-            res.send({'status':'success', "url":"/messenger/?ticket="+ sTickerId});            
             //console.log(items);
             //res.redirect('/messenger');
             //res.send({'status':'success', 'userId':items[0].user_id, 'groups': items[0].groups});
