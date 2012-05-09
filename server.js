@@ -58,13 +58,13 @@ app.post('/login', function(req, res) {
         if (err) throw err;
         
         if(items.length){
-            res.send({'status':'success', "url":"/messenger/?ticket="+ sTickerId});
             req.session.user = sUserName;
-            //console.log(items);
-            //res.redirect('/messenger');
+            res.redirect("/messenger?ticket="+sTickerId);
+            //res.send({'status':'success', "url":"/messenger/?ticket="+ sTickerId});
             //res.send({'status':'success', 'userId':items[0].user_id, 'groups': items[0].groups});
         }else{
-            res.send({'status':'fail'});
+            res.redirect("/");
+            //res.send({'status':'fail'});
         }    
     });
 });

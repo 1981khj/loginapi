@@ -1,5 +1,5 @@
 (function($) {
-    $.ajax({
+    /*$.ajax({
         type: 'post',
         url: 'http://loginapi.hjkim.c9.io/login',
         data: {
@@ -19,5 +19,5 @@
         error: function(){
             console.log('error');
         }
-    });
+    });*/
 })(jQuery);
